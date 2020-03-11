@@ -1,0 +1,13 @@
+- hosts: webserver
+  vars:
+    logrotate_scripts:
+      - name: daemon
+        path: /var/log/daemon.log
+        options:
+          - daily
+          - maxsize 10k
+          - rotate 1
+          - missingok
+          - compress
+          - delaycompress
+          - create 0600 root root
