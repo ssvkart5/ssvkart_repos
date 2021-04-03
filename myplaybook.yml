@@ -1,0 +1,8 @@
+---
+- hosts: node1
+  become: true 
+  become_user: root
+  tasks:
+  - name: uninstall httpd package
+    yum: name=httpd state=absent
+

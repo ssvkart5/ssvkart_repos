@@ -1,0 +1,23 @@
+---
+  - name: Play for Install Nginx on WebServers
+    hosts: webserver
+    tasks:
+       - name: install epelrelease
+         yum: >
+           name=epel-release
+           state=present
+       - name: install nginx package
+         yum: >
+           name=nginx
+           state=present
+       - name: copy a index.html
+         copy: >
+           src=/tmp/index.html
+           dest=/usr/share/nginx/html/index.html
+           owner=root
+           group=root
+           mode=0644
+       - name: allow firewalls
+         shell: firewall-cmd --zone=public --add-port=80/tcp --permanent; firewall-cmd --reload
+       - name: restart nginx service
+         command: service nginx start

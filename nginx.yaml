@@ -1,0 +1,12 @@
+---
+  - name: Play for Install Nginx on WebServers
+    hosts: webserver
+    tasks:
+       - name: Install epel-release 
+         yum: >
+           name=epel-release
+           state=absent
+       - name: Install Nginx Server
+         yum: >
+           name=nginx
+           state=absent
